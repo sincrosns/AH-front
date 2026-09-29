@@ -1,0 +1,89 @@
+<section class="calculadora">
+  <a class="calculadora__volver" routerLink="/pozos">&larr; Volver a pozos</a>
+
+  <header class="calculadora__header">
+    <h1 class="calculadora__titulo">Calculadora de inversiones</h1>
+    <p class="calculadora__sub">
+      Estima cuanto ganarias invirtiendo en un pozo, con datos reales o a mano.
+    </p>
+  </header>
+
+  <div class="calculadora__layout">
+    <div class="calculadora__form">
+      <label class="calculadora__label" for="pozo-select">Pozo real (opcional)</label>
+
+      @if (cargandoPozos()) {
+        <app-spinner texto="Buscando pozos abiertos..." />
+      } @else if (errorPozos(); as msg) {
+        <div class="calculadora__estado calculadora__estado--error" role="alert">
+          <p>{{ msg }}</p>
+          <button type="button" class="calculadora__reintentar" (click)="reintentar()">Reintentar</button>
+        </div>
+      } @else if (pozosAbiertos().length === 0) {
+        <p class="calculadora__vacio">No hay pozos abiertos en este momento. Podes completar los datos a mano.</p>
+      } @else {
+        <select
+          id="pozo-select"
+          class="calculadora__input calculadora__select"
+          [value]="pozoSeleccionadoId() ?? ''"
+          (change)="seleccionarPozo($any($event.target).value)"
+        >
+          <option value="">Ingresar a mano</option>
+          @for (pozo of pozosAbiertos(); track pozo.id) {
+            <option [value]="pozo.id">{{ pozo.titulo }}</option>
+          }
+        </select>
+      }
+
+      <label class="calculadora__label" for="monto-invertir">Monto a invertir</label>
+      <input
+        id="monto-invertir"
+        class="calculadora__input"
+        type="number"
+        min="0"
+        [value]="montoInvertir()"
+        (input)="onMontoInvertirChange($any($event.target).value)"
+      />
+
+      <label class="calculadora__label" for="precio-venta">Precio de venta estimado del auto</label>
+      <input
+        id="precio-venta"
+        class="calculadora__input"
+        type="number"
+        min="0"
+        [value]="precioVentaEstimado()"
+        (input)="onPrecioVentaChange($any($event.target).value)"
+      />
+
+      <label class="calculadora__label" for="monto-objetivo">Monto objetivo total del pozo</label>
+      <input
+        id="monto-objetivo"
+        class="calculadora__input"
+        type="number"
+        min="0"
+        [value]="montoObjetivo()"
+        (input)="onMontoObjetivoChange($any($event.target).value)"
+      />
+    </div>
+
+    <aside class="calculadora__resultado">
+      <h2 class="calculadora__subtitulo">Estimacion</h2>
+
+      @if (gananciaEstimada(); as ganancia) {
+        <p class="calculadora__resultado-monto">{{ formatoMonto(ganancia) }}</p>
+        <p class="calculadora__resultado-texto">Ganancia estimada sobre tu inversion.</p>
+
+        @if (porcentajeRetorno(); as pct) {
+          <p class="calculadora__resultado-pct">{{ formatoPorcentaje(pct) }} de retorno</p>
+        }
+      } @else if (gananciaEstimada() === 0) {
+        <p class="calculadora__resultado-monto">{{ formatoMonto(0) }}</p>
+        <p class="calculadora__resultado-texto">Ingresa un monto a invertir para ver la estimacion.</p>
+      } @else {
+        <p class="calculadora__resultado-texto">
+          Completa el monto objetivo del pozo para calcular la ganancia estimada.
+        </p>
+      }
+    </aside>
+  </div>
+</section>

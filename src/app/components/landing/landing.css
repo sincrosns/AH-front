@@ -1,0 +1,170 @@
+:host {
+  display: block;
+  width: 100%;
+  min-width: 0;
+}
+
+.landing {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+  padding: 3rem 1rem 2rem;
+  text-align: center;
+  width: 100%;
+  min-width: 0;
+}
+
+/* ── Hero principal: replica el formato del banner de referencia
+   (titulo grande + CTA a la izquierda, imagen a la derecha, flechas de
+   carrusel a los costados sobre un fondo azul degradado). ── */
+.landing__hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
+  max-width: 100%;
+  min-height: 420px;
+  padding: 2.75rem clamp(2.5rem, 6vw, 4.5rem);
+  border-radius: 24px;
+  overflow: hidden;
+  text-align: left;
+  box-sizing: border-box;
+  background:
+    radial-gradient(130% 120% at 82% -20%, rgba(255, 255, 255, 0.45), transparent 55%),
+    linear-gradient(115deg, #d6ecff 0%, #7cc3f6 52%, #3d9cef 100%);
+}
+
+.landing__hero-contenido {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.35rem;
+  width: 100%;
+}
+
+.landing__titulo {
+  font-size: clamp(2rem, 4.6vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1.06;
+  color: #0b1b3b;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.landing__bajada {
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  color: #0b1b3b;
+  opacity: 0.82;
+  margin: 0;
+  line-height: 1.5;
+  max-width: 44ch;
+}
+
+/* Imagen del hero: placeholder mientras la foto queda en suspenso. */
+.landing__hero-media {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  height: 100%;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.28);
+  border: 1px dashed rgba(11, 27, 59, 0.28);
+}
+
+.landing__hero-media-placeholder {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: rgba(11, 27, 59, 0.5);
+}
+
+/* Flechas de carrusel (placeholder deshabilitado por ahora). */
+.landing__hero-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: #fff;
+  color: #0057ff;
+  box-shadow: 0 8px 18px -8px rgba(0, 0, 0, 0.35);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.landing__hero-arrow svg {
+  width: 22px;
+  height: 22px;
+}
+
+.landing__hero-arrow:hover:not(:disabled) {
+  transform: translateY(-50%) scale(1.08);
+}
+
+.landing__hero-arrow:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+.landing__hero-arrow--prev {
+  left: 14px;
+}
+
+.landing__hero-arrow--next {
+  right: 14px;
+}
+
+@media (max-width: 860px) {
+  .landing__hero {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    gap: 1.5rem;
+    padding: 2.25rem 1.5rem;
+    text-align: center;
+  }
+
+  .landing__hero-contenido {
+    align-items: center;
+    text-align: center;
+  }
+
+  .landing__bajada {
+    margin-inline: auto;
+  }
+
+  .landing__hero-media {
+    min-height: 200px;
+    order: 1;
+  }
+
+  .landing__hero-arrow {
+    display: none;
+  }
+}
+
+/* ── Desktop grande: el hero aprovecha el ancho disponible en vez de quedar
+   centrado en una columna angosta. Por debajo de este breakpoint el layout
+   mobile queda tal cual estaba. ── */
+@media (min-width: 1000px) {
+  .landing {
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+    padding: 4rem 2rem 3rem;
+  }
+}

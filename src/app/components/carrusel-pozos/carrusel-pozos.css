@@ -1,0 +1,177 @@
+:host {
+  display: block;
+  width: 100%;
+  min-width: 0;
+}
+
+.carrusel-pozos__titulo {
+  margin: 0 0 var(--space-md);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.carrusel-pozos__cargando {
+  color: var(--color-text-muted);
+}
+
+.carrusel-pozos__estado {
+  padding: var(--space-xl);
+  border-radius: var(--radius-card);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.carrusel-pozos__estado--error {
+  border-color: rgba(192, 57, 43, 0.3);
+}
+
+.carrusel-pozos__estado--error p {
+  margin: 0 0 var(--space-md);
+  color: var(--color-error);
+}
+
+.carrusel-pozos__reintentar {
+  border: none;
+  border-radius: var(--radius-pill);
+  padding: var(--space-sm) var(--space-xl);
+  font-weight: 600;
+  color: #fff;
+  background: var(--color-primary);
+}
+
+.carrusel-pozos__wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  max-width: 100%;
+}
+
+.carrusel-pozos__carrusel {
+  display: flex;
+  flex: 1 1 0;
+  justify-content: center;
+  gap: var(--space-lg);
+  overflow-x: auto;
+  overflow-y: hidden;
+  min-width: 0;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-x;
+  overscroll-behavior-x: contain;
+  padding: var(--space-xs) var(--space-xs) var(--space-md);
+  scrollbar-width: thin;
+}
+
+.carrusel-pozos__item {
+  flex: 0 0 auto;
+  width: 220px;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding-bottom: var(--space-lg);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 4px 14px 4px 14px;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  animation: carrusel-pozos-in 0.35s ease backwards;
+}
+
+.carrusel-pozos__item:hover {
+  transform: translateY(-2px) scale(1.02);
+  border-color: rgba(238, 79, 35, 0.4);
+  box-shadow: var(--shadow-hover);
+}
+
+@keyframes carrusel-pozos-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.carrusel-pozos__btn {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+  cursor: pointer;
+  transition: transform 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.carrusel-pozos__btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.carrusel-pozos__btn:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  transform: scale(1.05);
+}
+
+.carrusel-pozos__btn:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.carrusel-pozos__hint-mobile {
+  display: none;
+}
+
+@media (max-width: 480px) {
+  .carrusel-pozos__wrapper {
+    gap: 0;
+  }
+
+  .carrusel-pozos__btn {
+    display: none;
+  }
+
+  .carrusel-pozos__carrusel {
+    scroll-snap-type: x proximity;
+    gap: var(--space-md);
+    padding: var(--space-xs) 0 var(--space-md);
+    background-image:
+      linear-gradient(to right, var(--color-surface), transparent),
+      linear-gradient(to left, var(--color-surface), transparent),
+      radial-gradient(farthest-side at 0 50%, rgba(0, 0, 0, 0.18), transparent),
+      radial-gradient(farthest-side at 100% 50%, rgba(0, 0, 0, 0.18), transparent);
+    background-repeat: no-repeat;
+    background-size: 24px 100%, 24px 100%, 10px 100%, 10px 100%;
+    background-position: left center, right center, left center, right center;
+    background-attachment: local, local, scroll, scroll;
+  }
+
+  .carrusel-pozos__item {
+    width: min(68vw, 200px);
+  }
+
+  .carrusel-pozos__hint-mobile {
+    display: block;
+    margin: var(--space-xs) 0 0;
+    text-align: center;
+    font-size: 0.72rem;
+    color: var(--color-text-muted);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .carrusel-pozos__item {
+    animation: none;
+  }
+}

@@ -1,0 +1,155 @@
+/*
+ * El host queda "display: contents": la tarjeta visual (fondo, borde,
+ * hover, radio) la define cada pantalla en su propio contenedor
+ * (.pozo-card, .carrusel-pozos__item, .inversion-card). Este componente
+ * solo aporta el contenido interno comun.
+ */
+:host {
+  display: contents;
+}
+
+.tarjeta-pozo__link {
+  display: contents;
+  color: inherit;
+  text-decoration: none;
+}
+
+.tarjeta-pozo__imagen {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: color-mix(in srgb, var(--color-primary) 8%, var(--color-border) 40%);
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.tarjeta-pozo__imagen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+:host(.tarjeta-pozo--compacta) .tarjeta-pozo__imagen {
+  aspect-ratio: 4 / 3;
+  background: color-mix(in srgb, var(--color-primary) 6%, var(--color-surface));
+}
+
+.tarjeta-pozo__badge {
+  flex-shrink: 0;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+}
+
+.tarjeta-pozo__badge--sobre-imagen {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: 0.65rem;
+  padding: 3px 9px;
+}
+
+.tarjeta-pozo__badge--abierto {
+  color: var(--color-success);
+  background: rgba(46, 125, 50, 0.12);
+  border: 1px solid rgba(46, 125, 50, 0.25);
+}
+
+.tarjeta-pozo__badge--comprado {
+  color: var(--color-primary);
+  background: rgba(238, 79, 35, 0.1);
+  border: 1px solid rgba(238, 79, 35, 0.25);
+}
+
+.tarjeta-pozo__badge--vendido {
+  color: var(--color-text-muted);
+  background: color-mix(in srgb, var(--color-text-muted) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-text-muted) 25%, transparent);
+}
+
+.tarjeta-pozo__hd {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  margin: 0 var(--space-lg);
+}
+
+:host(.tarjeta-pozo--compacta) .tarjeta-pozo__hd {
+  margin: 0 var(--space-md);
+}
+
+.tarjeta-pozo__titulo {
+  margin: 0;
+  min-width: 0;
+  overflow-wrap: break-word;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+:host(.tarjeta-pozo--compacta) .tarjeta-pozo__titulo {
+  font-size: 0.9rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tarjeta-pozo__progreso {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  margin: auto var(--space-lg) 0;
+}
+
+:host(.tarjeta-pozo--compacta) .tarjeta-pozo__progreso {
+  margin: 0 var(--space-md);
+  gap: var(--space-xs);
+}
+
+.tarjeta-pozo__barra {
+  height: 8px;
+  border-radius: var(--radius-pill);
+  background: var(--color-border);
+  overflow: hidden;
+}
+
+:host(.tarjeta-pozo--compacta) .tarjeta-pozo__barra {
+  height: 6px;
+}
+
+.tarjeta-pozo__barra-relleno {
+  height: 100%;
+  border-radius: var(--radius-pill);
+  background: var(--color-primary);
+  transition: width 0.3s ease;
+}
+
+.tarjeta-pozo__montos {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-sm);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.tarjeta-pozo__monto-objetivo {
+  font-weight: 500;
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+}
+
+:host(.tarjeta-pozo--compacta) .tarjeta-pozo__montos,
+:host(.tarjeta-pozo--compacta) .tarjeta-pozo__monto-objetivo {
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+}

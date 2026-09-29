@@ -1,0 +1,438 @@
+:host {
+  display: block;
+  width: 100%;
+  min-width: 0;
+}
+
+.config {
+  padding: 2rem 1.5rem;
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  font-family: var(--font-family-base);
+}
+
+.config__titulo {
+  margin: 0 0 1.25rem;
+}
+
+.config__cargando {
+  color: var(--color-text-muted);
+}
+
+.config__resumen {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-surface);
+}
+
+.config__avatar {
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 0.02em;
+}
+
+.config__resumen-datos {
+  min-width: 0;
+}
+
+.config__resumen-nombre {
+  margin: 0;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.config__resumen-email {
+  margin: 0.15rem 0 0;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.config__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.25rem;
+  align-items: start;
+}
+
+@media (min-width: 860px) {
+  .config__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.config__card--peligro {
+  grid-column: 1 / -1;
+}
+
+.config__card {
+  padding: 1.25rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-surface);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.config__card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(238, 79, 35, 0.4);
+  box-shadow: var(--shadow-hover);
+}
+
+.config__card-titulo {
+  margin: 0 0 1rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.config__form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.config__label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-top: 0.6rem;
+}
+
+.config__input {
+  padding: 0.6rem 0.7rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: 0.95rem;
+  background-color: var(--color-surface);
+  color: var(--color-text);
+}
+
+.config__input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+.config__error {
+  color: var(--color-error);
+  font-size: 0.85rem;
+  margin: 0.4rem 0 0;
+}
+
+.config__exito {
+  color: var(--color-success);
+  font-size: 0.85rem;
+  margin: 0.4rem 0 0;
+}
+
+.config__submit {
+  margin-top: 1.2rem;
+  padding: 0.7rem;
+  border: none;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-primary);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  align-self: flex-start;
+}
+
+.config__submit:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.config__tema-opciones {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.6rem;
+}
+
+.config__tema-boton {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  color: var(--color-text);
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.config__tema-boton--activo {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.config__tema-boton:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.config__notificaciones {
+  margin-top: 1.25rem;
+}
+
+.config__toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  cursor: pointer;
+}
+
+.config__toggle-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.config__toggle-track {
+  position: relative;
+  width: 40px;
+  height: 22px;
+  flex-shrink: 0;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-border);
+  transition: background-color 0.15s ease;
+}
+
+.config__toggle-thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: #fff;
+  transition: transform 0.15s ease;
+}
+
+.config__toggle-input:checked + .config__toggle-track {
+  background-color: var(--color-primary);
+}
+
+.config__toggle-input:checked + .config__toggle-track .config__toggle-thumb {
+  transform: translateX(18px);
+}
+
+.config__toggle-input:focus-visible + .config__toggle-track {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.config__toggle-input:disabled + .config__toggle-track {
+  opacity: 0.6;
+}
+
+.config__toggle-texto {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.config__actividad {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.config__actividad-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+
+.config__actividad-etiqueta {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.config__actividad-valor {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text);
+  text-align: right;
+}
+
+.config__card--peligro {
+  border-color: var(--color-error);
+}
+
+.config__peligro-texto {
+  margin: 0 0 0.6rem;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.config__eliminar {
+  padding: 0.7rem 1rem;
+  border: 1px solid var(--color-error);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-error);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.config__eliminar:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.config__overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(3px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  animation: config-overlay-fade 0.22s ease;
+}
+
+@keyframes config-overlay-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.config__modal {
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  animation: config-modal-pop 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes config-modal-pop {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.config__modal-hd {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.1rem 1.25rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.config__modal-titulo {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.config__modal-cerrar {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  background: none;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: color 0.18s ease, border-color 0.18s ease;
+}
+
+.config__modal-cerrar:hover {
+  color: var(--color-text);
+  border-color: var(--color-text-muted);
+}
+
+.config__modal-body {
+  padding: 1.1rem 1.25rem;
+}
+
+.config__modal-body p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--color-text);
+}
+
+.config__modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.6rem;
+  padding: 1rem 1.25rem 1.25rem;
+}
+
+.config__modal-cancelar {
+  padding: 0.6rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-text);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.config__modal-confirmar {
+  padding: 0.6rem 1rem;
+  border: 1px solid var(--color-error);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-error);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+@media (max-width: 480px) {
+  .config {
+    padding: 1.25rem 1rem;
+  }
+
+  .config__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .config__overlay,
+  .config__modal {
+    animation: none !important;
+  }
+}

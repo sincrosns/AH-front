@@ -1,0 +1,33 @@
+.spinner {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 0;
+  color: var(--color-text-muted);
+}
+
+.spinner__anillo {
+  width: 1.1rem;
+  height: 1.1rem;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 2px solid var(--color-border);
+  border-top-color: var(--color-primary);
+  animation: spinner-girar 0.7s linear infinite;
+}
+
+.spinner__texto {
+  font-size: 0.95rem;
+}
+
+@keyframes spinner-girar {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spinner__anillo {
+    animation: none;
+  }
+}
