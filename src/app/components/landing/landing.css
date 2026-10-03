@@ -65,26 +65,62 @@
   max-width: 44ch;
 }
 
-/* Imagen del hero: placeholder mientras la foto queda en suspenso. */
-.landing__hero-media {
+/* Logo de marca del hero: ocupa la columna derecha, centrado en vertical y
+   horizontal. Efecto de profundidad con tres capas enmascaradas con el PNG. */
+.landing__hero-logo {
   position: relative;
   z-index: 1;
   display: flex;
   align-items: center;
   justify-content: center;
+  min-width: 0;
   min-height: 300px;
-  height: 100%;
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.28);
-  border: 1px dashed rgba(11, 27, 59, 0.28);
 }
 
-.landing__hero-media-placeholder {
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
-  color: rgba(11, 27, 59, 0.5);
+/* Wrapper cuadrado e inclinado: la profundidad (translates de las capas) sigue
+   la inclinacion de -12deg porque se aplica dentro de este wrapper ya rotado. */
+.landing__hero-logo-stack {
+  position: relative;
+  width: 78%;
+  max-width: 440px;
+  aspect-ratio: 1;
+  transform: rotate(-12deg);
+}
+
+.landing__hero-logo-layer,
+.landing__hero-logo-shadow {
+  position: absolute;
+  inset: 0;
+}
+
+/* El PNG blanco actua como mascara: cada capa se rellena con su propio color/gradiente. */
+.landing__hero-logo-layer {
+  -webkit-mask: url(/imagenes/sincro-logo.png) center / contain no-repeat;
+          mask: url(/imagenes/sincro-logo.png) center / contain no-repeat;
+}
+
+/* Capa 1 — sombra profunda (la mas atras). */
+.landing__hero-logo-layer--depth {
+  background: rgba(22, 92, 190, 0.22);
+  transform: translate(22px, 26px);
+  filter: blur(1px);
+}
+
+/* Capa 2 — intermedia, brillo translucido. */
+.landing__hero-logo-layer--mid {
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.15));
+  transform: translate(11px, 13px);
+}
+
+/* El drop-shadow va en el div padre (no en la capa enmascarada), sino la
+   mascara recortaria la sombra. */
+.landing__hero-logo-shadow {
+  filter: drop-shadow(0 18px 30px rgba(13, 60, 140, 0.22));
+}
+
+/* Capa 3 — logo principal (la mas adelante). */
+.landing__hero-logo-layer--main {
+  background: linear-gradient(150deg, #ffffff 30%, #e3f1ff 75%, #cfe6fd 100%);
 }
 
 /* Flechas de carrusel (placeholder deshabilitado por ahora). */
@@ -148,9 +184,14 @@
     margin-inline: auto;
   }
 
-  .landing__hero-media {
-    min-height: 200px;
+  .landing__hero-logo {
+    min-height: 180px;
     order: 1;
+  }
+
+  .landing__hero-logo-stack {
+    width: 60%;
+    max-width: 240px;
   }
 
   .landing__hero-arrow {
